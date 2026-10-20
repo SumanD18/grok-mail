@@ -23,3 +23,6 @@ Grok Bot routines calling /api/ingest; sends go to an outbox that Grok Bot deliv
 - Keep the security fixes already in scripts/grok-pwa-shared.mjs, src/lib/env.server.ts and
   src/server/mail/config.server.ts (extensions opt-in, https-only webhook, 32+ char session secret).
 - Commit to a branch and open a PR; pushing to `main` deploys to production once Vercel Git is connected.
+
+Also read AGENTS.md for the original project guide.
+

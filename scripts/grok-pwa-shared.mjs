@@ -209,7 +209,8 @@ export function readGrokProjectId() {
 
 export function readGrokExtensionsEnabled() {
   const fromProcess = typeof process !== "undefined" ? process.env?.VITE_GROK_EXTENSIONS : "";
-  return String(fromProcess ?? "").trim() !== "0";
+  // Opt-in: a remote script on the mailbox origin could read mail.
+  return String(fromProcess ?? "").trim() === "1";
 }
 
 export function readXCreator() {

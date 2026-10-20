@@ -139,7 +139,8 @@ export function webhookUrlAllowed(value: string): boolean {
   if (value.length > URL_MAX) return false;
   try {
     const url = new URL(value);
-    if (url.protocol !== "http:" && url.protocol !== "https:") return false;
+    // https only, so the webhook key never travels in cleartext.
+    if (url.protocol !== "https:") return false;
     if (url.username || url.password) return false;
     return true;
   } catch {

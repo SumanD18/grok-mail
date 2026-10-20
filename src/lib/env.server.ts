@@ -26,7 +26,9 @@ export function sitePassword(): string | undefined {
 
 /** Session cookie signing secret. GBM_SESSION_SECRET, or the older SESSION_SECRET. */
 export function sessionSecret(): string | undefined {
-  return env("GBM_SESSION_SECRET") ?? env("SESSION_SECRET");
+  const secret = env("GBM_SESSION_SECRET") ?? env("SESSION_SECRET");
+  // A short secret makes the session HMAC guessable; treat it as unset.
+  return secret && secret.length >= 32 ? secret : undefined;
 }
 
 /** Bearer token for the bot routes. GBM_INGEST_TOKEN, or the older INGEST_TOKEN. */
